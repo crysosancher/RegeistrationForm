@@ -7,15 +7,15 @@
 	<title>Document</title>
 </head>
 <body>
-	<h1>Registration</h1>
-	<form id="reg-form">
+	<h1>Login</h1>
+	<form id="login">
 		<input type="text" autocomplete="off" id="username" placeholder="Username"/>
 		<input type="password" id="password" placeholder="Password"/>
 		<input type="submit" value="submit form"/>
 
 	</form>
 	<script>
-		const form=document.getElementById('reg-form');
+		const form=document.getElementById('login');
 		form.addEventListener('submit',registerUser)
 		//i.) send data as json
 		async function registerUser(){
@@ -23,7 +23,7 @@
 			const username=document.getElementById('username').value
 			const password=document.getElementById('password').value
 			
-			const result=await fetch('/api/register',{
+			const result=await fetch('/api/login',{
 				method:'POST',
 				headers:{
 					'Content-Type':'application/json'
@@ -34,6 +34,7 @@
 				})
 			}).then((res)=>res.json())
 			if(result.status==='ok'){
+				console.log("Got the token",result.data)
 				alert('registration successful')
 				//everthing went fine
 			}else(
